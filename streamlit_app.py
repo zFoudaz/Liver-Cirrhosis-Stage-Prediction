@@ -37,11 +37,30 @@ st.set_page_config(layout="centered",page_icon="🫀",page_title="Liver prob. de
 
 st.title(':lab_coat: Liver Cirrhosis Stage Prediction')
 st.caption('This is a web app to predict the stage of liver cirrhosis based on various features.\n')
-st.write('Train Accuracy:',round(accuracy_score(y_train,y_pred_train)*100,2),)
-st.write('Validation Accuracy:',round(accuracy_score(y_test,y_pred)*100,2))
+st.markdown(
+    """
+    <style>
+    .blue-number {
+    padding: 0.2em 0.4em;
+    overflow-wrap: break-word;
+    white-space: pre-wrap;
+    margin: 0px;
+    border-radius: 0.25rem;
+    background: rgb(237, 242, 246);
+    color: rgb(0, 112, 224);
+    font-family: "Source Code Pro", monospace;
+    font-size: 0.75em;}
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
+st.markdown(f"Train Accuracy: <span class='blue-number'>98.42</span>", unsafe_allow_html=True)
+st.markdown(f"Validation Accuracy: <span class='blue-number'>95.52</span>", unsafe_allow_html=True)
+
 st.divider()
 st.write("""If you need help check --> :grey_question:""")
-
 
     
 status = st.selectbox('Status', ['D','C','CL'],help='status of the patient C (censored), CL (censored due to liver tx), or D (death)')
@@ -103,6 +122,19 @@ with col14:
    prothrombin = st.number_input('Prothrombin',help='prothrombin time in seconds')
 with col15:
     n_years = st.number_input('N_Years',help='Number of years between registration and the earlier of death, transplantation, or study analysis time in 1986')
+
+
+col = st.columns([1, 2, 1])[1]  # center column (wider)
+
+with col:
+    st.markdown("""
+        <style>
+        div.stButton > button {
+            width: 100%;
+        }
+        </style>
+    """, unsafe_allow_html=True)
+    
 
 if st.button(':nerd_face: Predict'):
     test=pd.DataFrame(
