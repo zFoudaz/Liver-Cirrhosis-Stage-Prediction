@@ -102,7 +102,7 @@ if st.button('Predict'):
     st.write('The model Predicted that the patient with provided data is in Stage',pipeline.predict(test)[0]+1)
     st.write(test)
 
-if st.button('Show Test Data'):
+if st.toggle('Show Test Data'):
     X_test_df = pd.read_csv('test_data.csv')
     st.write(X_test_df)
 #
