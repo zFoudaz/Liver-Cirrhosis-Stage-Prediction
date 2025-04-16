@@ -138,5 +138,3 @@ if st.toggle('Show Test Data :relaxed:'):
     X_test_df = pd.read_csv('test_data.csv')
     st.write(X_test_df)
 
-git config --global user.name "Your Name"
-git config --global user.email "you@example.com"
