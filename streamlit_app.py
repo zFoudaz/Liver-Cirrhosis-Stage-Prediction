@@ -37,63 +37,63 @@ st.write("""If you need help check --> :grey_question:""")
     
 status = st.selectbox('Status', ['D','C','CL'],help='status of the patient C (censored), CL (censored due to liver tx), or D (death)')
 drug = st.selectbox('Drug', ['Placebo','D-penicillamine'],help='type of drug D-penicillamine or placebo')
-Age = st.number_input('Age',help='age in years',step=1,value=1,min_value=1)
+Age = st.number_input('Age',help='age in years',step=1,value=46,min_value=1)
 
 col1, col2, col3 = st.columns(3)
 with col1:
-    Sex = st.selectbox('Sex', ['M','F'],help='M (male) or F (female)')
+    Sex = st.selectbox('Sex', ['M','F'],help='M (male) or F (female)' ,index=1)
 
 with col2:
-    ascites = st.selectbox('Ascites', ['Y','N'],help='presence of ascites N (No) or Y (Yes)')
+    ascites = st.selectbox('Ascites', ['Y','N'],help='presence of ascites N (No) or Y (Yes)',index=1)
 
 with col3:
-    hepatomegaly = st.selectbox('Hepatomegaly', ['Y','N'],help='presence of hepatomegaly N (No) or Y (Yes)')
+    hepatomegaly = st.selectbox('Hepatomegaly', ['Y','N'],help='presence of hepatomegaly N (No) or Y (Yes)',index=0)
     
 
 col4, col5 =st.columns(2)
 with col4:
-    spiders = st.selectbox('Spiders', ['Y','N'],help='presence of spiders N (No) or Y (Yes)') 
+    spiders = st.selectbox('Spiders', ['Y','N'],help='presence of spiders N (No) or Y (Yes)',index=1) 
 
 with col5:
-    edema = st.selectbox('Edema', ['Y','N','S'],help='presence of edema N (no edema and no diuretic therapy for edema), S (edema present without diuretics, or edema resolved by diuretics), or Y (edema despite diuretic therapy)')
+    edema = st.selectbox('Edema', ['Y','N','S'],help='presence of edema N (no edema and no diuretic therapy for edema), S (edema present without diuretics, or edema resolved by diuretics), or Y (edema despite diuretic therapy)',index=1)
     
 
 col6, col7, col8= st.columns(3)
 with col6:
-    bilirubin = st.number_input('Bilirubin',help='serum bilirubin in [mg/dl]')
+    bilirubin = st.number_input('Bilirubin',help='serum bilirubin in [mg/dl]',value=14.4)
 
 with col7:
-    cholesterol = st.number_input('Cholesterol',help='serum cholesterol in [mg/dl]')
+    cholesterol = st.number_input('Cholesterol',help='serum cholesterol in [mg/dl]',value=448)
 
 with col8:
-    albumin = st.number_input('Albumin',help='albumin in [gm/dl]')
+    albumin = st.number_input('Albumin',help='albumin in [gm/dl]',value=3.65)
   
 
 col9, col10, col11= st.columns(3)
     
 with col9:
-   copper = st.number_input('Copper',help='urine copper in [ug/day]')
+   copper = st.number_input('Copper',help='urine copper in [ug/day]',value=34)
    
 with col10:
-    alk_phos = st.number_input('Alk_Phos',help='alkaline phosphatase in [U/liter]')
+    alk_phos = st.number_input('Alk_Phos',help='alkaline phosphatase in [U/liter]',value=1218)
 
 with col11:
-    sgot = st.number_input('SGOT',help='SGOT in [U/ml]')
+    sgot = st.number_input('SGOT',help='SGOT in [U/ml]',value=60.45)
    
 
 col12, col13 =st.columns(2)
 with col12:
-    tryglicerides = st.number_input('Tryglicerides',help='triglicerides in [mg/dl]')
+    tryglicerides = st.number_input('Tryglicerides',help='triglicerides in [mg/dl]',value=318)
     
 with col13:
-   platelets = st.number_input('Platelets',help='platelets per cubic [ml/1000]')
+   platelets = st.number_input('Platelets',help='platelets per cubic [ml/1000]',value=277)
 
 
 col14, col15 =st.columns(2)
 with col14:
-   prothrombin = st.number_input('Prothrombin',help='prothrombin time in seconds')
+   prothrombin = st.number_input('Prothrombin',help='prothrombin time in seconds',value=11)
 with col15:
-    n_years = st.number_input('N_Years',help='Number of years between registration and the earlier of death, transplantation, or study analysis time in 1986')
+    n_years = st.number_input('N_Years',help='Number of years between registration and the earlier of death, transplantation, or study analysis time in 1986',value=6)
 
 
 col = st.columns([1, 2, 1])[1]  # center column (wider)
