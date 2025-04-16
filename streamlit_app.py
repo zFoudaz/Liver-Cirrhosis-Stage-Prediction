@@ -27,9 +27,19 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+st.markdown(
+    """
+    <style>
+    .font_style {
+        font-weight: bold;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-st.markdown(f"Train Accuracy: <span class='blue-number'>98.42</span>", unsafe_allow_html=True)
-st.markdown(f"Validation Accuracy: <span class='blue-number'>95.52</span>", unsafe_allow_html=True)
+st.markdown(f"<span class='font_style'>Train Accuracy: <span class='blue-number'>98.42</span></span>", unsafe_allow_html=True)
+st.markdown(f"<span class='font_style'>Validation Accuracy: <span class='blue-number'>95.52</span></span>", unsafe_allow_html=True)
 
 st.divider()
 st.write("""If you need help check --> :grey_question:""")
@@ -131,7 +141,7 @@ if st.button(':nerd_face: Predict'):
         'N_Years':[n_years]
     }
     )
-    st.markdown(f"The model Predicted that the patient with provided data is in Stage <span class='blue-number'>{model.predict(test)[0]+1}</span>", unsafe_allow_html=True)
+    st.markdown(f"<span class='font_style'>The model Predicted that the patient with provided data is in Stage <span class='blue-number'>{model.predict(test)[0]+1}</span></span>", unsafe_allow_html=True)
     st.write(test)
 
 if st.toggle('Show Test Data :relaxed:'):
