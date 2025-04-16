@@ -159,7 +159,7 @@ if st.button(':nerd_face: Predict'):
         'N_Years':[n_years]
     }
     )
-    st.write('The model Predicted that the patient with provided data is in Stage',pipeline.predict(test)[0]+1)
+    st.markdown(f"The model Predicted that the patient with provided data is in Stage <span class='blue-number'>{pipeline.predict(test)[0]+1}</span>", unsafe_allow_html=True)
     st.write(test)
 
 if st.toggle('Show Test Data :relaxed:'):
