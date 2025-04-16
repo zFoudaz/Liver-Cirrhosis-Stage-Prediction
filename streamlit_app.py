@@ -1,36 +1,8 @@
 import pandas as pd
-from sklearn.preprocessing import StandardScaler,OneHotEncoder
-from sklearn.compose import make_column_transformer
-from sklearn.pipeline import make_pipeline
-from sklearn.model_selection import train_test_split
-from xgboost import XGBClassifier
-from sklearn.metrics import classification_report , accuracy_score , confusion_matrix
+import pickle
 import streamlit as st
 
-
-
-df = pd.read_csv('liver_cirrhosis.csv')
-df['Age'] = (df['Age'] / 365).astype('int')
-df['N_Years'] = (df['N_Days'] / 365).astype('int')
-df.drop('N_Days',axis=1,inplace=True)
-df.head()
-col_trans = make_column_transformer(
-    (OneHotEncoder(drop='first'),['Status','Drug','Age','Sex','Ascites','Hepatomegaly','Spiders','Edema']),
-    (StandardScaler(),['Age','Bilirubin','Cholesterol','Albumin','Copper','Alk_Phos','SGOT','Tryglicerides','Platelets','Prothrombin','N_Years']),
-    remainder='passthrough'
-)
-
-
-pipeline=make_pipeline(col_trans,XGBClassifier())
-X = df.drop('Stage',axis=1)
-y= df['Stage']-1
-X_train , X_test , y_train , y_test = train_test_split(X,y,test_size=0.05,random_state=42,stratify=y)
-pipeline.fit(X_train,y_train)
-y_pred=pipeline.predict(X_test)
-y_pred_train=pipeline.predict(X_train)
-
-
-
+model=pickle.load(open('saved_pipeline.sav','rb'))
 
 # Set the layout to wide
 st.set_page_config(layout="centered",page_icon="🫀",page_title="Liver prob. detector")
@@ -159,9 +131,12 @@ if st.button(':nerd_face: Predict'):
         'N_Years':[n_years]
     }
     )
-    st.markdown(f"The model Predicted that the patient with provided data is in Stage <span class='blue-number'>{pipeline.predict(test)[0]+1}</span>", unsafe_allow_html=True)
+    st.markdown(f"The model Predicted that the patient with provided data is in Stage <span class='blue-number'>{model.predict(test)[0]+1}</span>", unsafe_allow_html=True)
     st.write(test)
 
 if st.toggle('Show Test Data :relaxed:'):
     X_test_df = pd.read_csv('test_data.csv')
     st.write(X_test_df)
+
+git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
