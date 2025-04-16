@@ -38,8 +38,8 @@ st.markdown(
     unsafe_allow_html=True,
 )
 
-st.markdown(f"<span class='font_style'>Train Accuracy: <span class='blue-number'>98.42</span></span>", unsafe_allow_html=True)
-st.markdown(f"<span class='font_style'>Validation Accuracy: <span class='blue-number'>95.52</span></span>", unsafe_allow_html=True)
+st.markdown(f"<span class='font_style'>Train Accuracy: <span class='blue-number'>98</span></span>", unsafe_allow_html=True)
+st.markdown(f"<span class='font_style'>Validation Accuracy: <span class='blue-number'>97</span></span>", unsafe_allow_html=True)
 
 st.divider()
 st.write("""If you need help check --> :grey_question:""")
