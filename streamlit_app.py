@@ -31,52 +31,80 @@ y_pred_train=pipeline.predict(X_train)
 
 
 
-st.title('Liver Cirrhosis Stage Prediction')
-st.write('This is a web app to predict the stage of liver cirrhosis based on various features.\n')
-st.write('Train Accuracy:',round(accuracy_score(y_train,y_pred_train)*100,2))
+
+# Set the layout to wide
+st.set_page_config(layout="centered",page_icon="🫀",page_title="Liver prob. detector")
+
+st.title(':lab_coat: Liver Cirrhosis Stage Prediction')
+st.caption('This is a web app to predict the stage of liver cirrhosis based on various features.\n')
+st.write('Train Accuracy:',round(accuracy_score(y_train,y_pred_train)*100,2),)
 st.write('Validation Accuracy:',round(accuracy_score(y_test,y_pred)*100,2))
 st.divider()
-st.write("""
-Status: status of the patient C (censored), CL (censored due to liver tx), or D (death) \n
-Drug: type of drug D-penicillamine or placebo \n
-Age: age in years \n
-Sex: M (male) or F (female) \n
-Ascites: presence of ascites N (No) or Y (Yes) \n
-Hepatomegaly: presence of hepatomegaly N (No) or Y (Yes) \n
-Spiders: presence of spiders N (No) or Y (Yes) \n
-Edema: presence of edema N (no edema and no diuretic therapy for edema), S (edema present without diuretics, or edema resolved by diuretics), or Y (edema despite diuretic therapy) \n
-Bilirubin: serum bilirubin in [mg/dl]\n
-Cholesterol: serum cholesterol in [mg/dl]\n
-Albumin: albumin in [gm/dl]\n
-Copper: urine copper in [ug/day]\n
-Alk_Phos: alkaline phosphatase in [U/liter]\n
-SGOT: SGOT in [U/ml]\n
-Tryglicerides: triglicerides in [mg/dl]\n
-Platelets: platelets per cubic [ml/1000]\n
-Prothrombin: prothrombin time in seconds [s]\n
-N_Years: Number of years between registration and the earlier of death, transplantation, or study analysis time in 1986\n   
-""")
+st.write("""If you need help check --> :grey_question:""")
 
-status = st.selectbox('Status', ['D','C','CL'])
-drug = st.selectbox('Drug', ['Placebo','D-penicillamine'])
-Age = st.number_input('Age')
-Sex = st.selectbox('Sex', ['M','F'])
-ascites = st.selectbox('Ascites', ['Y','N'])
-hepatomegaly = st.selectbox('Hepatomegaly', ['Y','N'])
-spiders = st.selectbox('Spiders', ['Y','N'])
-edema = st.selectbox('Edema', ['Y','N','S'])
-bilirubin = st.number_input('Bilirubin')
-cholesterol = st.number_input('Cholesterol')
-albumin = st.number_input('Albumin')
-copper = st.number_input('Copper')
-alk_phos = st.number_input('Alk_Phos')
-sgot = st.number_input('SGOT')
-tryglicerides = st.number_input('Tryglicerides')
-platelets = st.number_input('Platelets')
-prothrombin = st.number_input('Prothrombin')
-n_years = st.number_input('N_Years')
 
-if st.button('Predict'):
+    
+status = st.selectbox('Status', ['D','C','CL'],help='status of the patient C (censored), CL (censored due to liver tx), or D (death)')
+drug = st.selectbox('Drug', ['Placebo','D-penicillamine'],help='type of drug D-penicillamine or placebo')
+Age = st.number_input('Age',help='age in years',step=1,value=1,min_value=1)
+
+col1, col2, col3 = st.columns(3)
+with col1:
+    Sex = st.selectbox('Sex', ['M','F'],help='M (male) or F (female)')
+
+with col2:
+    ascites = st.selectbox('Ascites', ['Y','N'],help='presence of ascites N (No) or Y (Yes)')
+
+with col3:
+    hepatomegaly = st.selectbox('Hepatomegaly', ['Y','N'],help='presence of hepatomegaly N (No) or Y (Yes)')
+    
+
+col4, col5 =st.columns(2)
+with col4:
+    spiders = st.selectbox('Spiders', ['Y','N'],help='presence of spiders N (No) or Y (Yes)') 
+
+with col5:
+    edema = st.selectbox('Edema', ['Y','N','S'],help='presence of edema N (no edema and no diuretic therapy for edema), S (edema present without diuretics, or edema resolved by diuretics), or Y (edema despite diuretic therapy)')
+    
+
+col6, col7, col8= st.columns(3)
+with col6:
+    bilirubin = st.number_input('Bilirubin',help='serum bilirubin in [mg/dl]')
+
+with col7:
+    cholesterol = st.number_input('Cholesterol',help='serum cholesterol in [mg/dl]')
+
+with col8:
+    albumin = st.number_input('Albumin',help='albumin in [gm/dl]')
+  
+
+col9, col10, col11= st.columns(3)
+    
+with col9:
+   copper = st.number_input('Copper',help='urine copper in [ug/day]')
+   
+with col10:
+    alk_phos = st.number_input('Alk_Phos',help='alkaline phosphatase in [U/liter]')
+
+with col11:
+    sgot = st.number_input('SGOT',help='SGOT in [U/ml]')
+   
+
+col12, col13 =st.columns(2)
+with col12:
+    tryglicerides = st.number_input('Tryglicerides',help='triglicerides in [mg/dl]')
+    
+with col13:
+   platelets = st.number_input('Platelets',help='platelets per cubic [ml/1000]')
+
+
+col14, col15 =st.columns(2)
+with col14:
+   prothrombin = st.number_input('Prothrombin',help='prothrombin time in seconds')
+with col15:
+    n_years = st.number_input('N_Years',help='Number of years between registration and the earlier of death, transplantation, or study analysis time in 1986')
+
+if st.button(':nerd_face: Predict'):
     test=pd.DataFrame(
     {
         'Status':[status],
@@ -102,7 +130,6 @@ if st.button('Predict'):
     st.write('The model Predicted that the patient with provided data is in Stage',pipeline.predict(test)[0]+1)
     st.write(test)
 
-if st.toggle('Show Test Data'):
+if st.toggle('Show Test Data :relaxed:'):
     X_test_df = pd.read_csv('test_data.csv')
     st.write(X_test_df)
-#
