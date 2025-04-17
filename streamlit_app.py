@@ -42,7 +42,7 @@ st.markdown(f"<span class='font_style'>Train Accuracy: <span class='blue-number'
 st.markdown(f"<span class='font_style'>Validation Accuracy: <span class='blue-number'>97</span></span>", unsafe_allow_html=True)
 
 st.divider()
-st.write("""If you need help check --> :grey_question:""")
+# st.write("""If you need help check --> :grey_question:""")
 
     
 status = st.selectbox('Status', ['D','C','CL'],help='status of the patient C (censored), CL (censored due to liver tx), or D (death)')
