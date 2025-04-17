@@ -7,7 +7,7 @@ model=pickle.load(open('saved_pipeline.sav','rb'))
 # Set the layout to wide
 st.set_page_config(layout="centered",page_icon="🫀",page_title="Liver prob. detector")
 
-st.title(':lab_coat: Liver Cirrhosis Stage Prediction')
+st.title(':lab_coat: Liver Cirrhosis Stage Predictor')
 st.caption('This is a web app to predict the stage of liver cirrhosis based on various features.\n')
 st.markdown(
     """
